@@ -1,22 +1,22 @@
 function sendMessage() {
-  const userInput = document.getElementById("user-input").value.toLowerCase();
+  const input = document.getElementById("user-input");
   const chatBox = document.getElementById("chat-box");
+  const userMessage = input.value.toLowerCase();
+  let botResponse = "";
 
-  let response = "";
-
-  if (userInput.includes("notes")) {
-    response = "Here are your notes for the subject!";
-  } else if (userInput.includes("exam")) {
-    response = "The upcoming exam is scheduled for next Monday.";
-  } else if (userInput.includes("faculty")) {
-    response = "Prof. Manpreet Kaur can be contacted at manpreet.kaur@lpu.in";
-  } else if (userInput.includes("assignment")) {
-    response = "You have 2 assignments due this week.";
+  if (userMessage.includes("notes")) {
+    botResponse = "Here are your notes for the subject!";
+  } else if (userMessage.includes("exam")) {
+    botResponse = "The upcoming exam is scheduled for next Monday.";
+  } else if (userMessage.includes("faculty")) {
+    botResponse = "Prof. Manpreet Kaur can be contacted at manpreet.kaur@lpu.in";
+  } else if (userMessage.includes("assignment")) {
+    botResponse = "You have 2 assignments due this week.";
   } else {
-    response = "I'm sorry, I didn't understand that.";
+    botResponse = "I'm sorry, I didn't understand that.";
   }
 
-  chatBox.innerHTML += <div class='user-msg'>You: ${userInput}</div>;
-  chatBox.innerHTML += <div class='bot-msg'>Bot: ${response}</div>;
-  document.getElementById("user-input").value = "";
+  chatBox.innerHTML += <div><strong>You:</strong> ${userMessage}</div>;
+  chatBox.innerHTML += <div><strong>Bot:</strong> ${botResponse}</div>;
+  input.value = "";
 }
