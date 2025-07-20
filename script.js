@@ -1,30 +1,22 @@
 function sendMessage() {
-  const input = document.getElementById("user-input");
+  const userInput = document.getElementById("user-input").value.toLowerCase();
   const chatBox = document.getElementById("chat-box");
 
-  const userMsg = input.value.trim();
-  if (userMsg === "") return;
+  let response = "";
 
-  // Show user message
-  chatBox.innerHTML += <div><strong>You:</strong> ${userMsg}</div>;
-
-  // Bot reply logic
-  let botReply = "";
-
-  if (userMsg.toLowerCase().includes("notes")) {
-    botReply = "Here’s the link to your subject notes: [Sample Notes PDF]";
-  } else if (userMsg.toLowerCase().includes("exam")) {
-    botReply = "Your next exam is on 25th July. All the best!";
-  } else if (userMsg.toLowerCase().includes("faculty")) {
-    botReply = "For academic queries, contact Prof. Manpreet Kaur at manpreet.kaur@lpu.in";
-  } else if (userMsg.toLowerCase().includes("reminder")) {
-    botReply = "Reminder set for Assignment Submission on 22nd July.";
+  if (userInput.includes("notes")) {
+    response = "Here are your notes for the subject!";
+  } else if (userInput.includes("exam")) {
+    response = "The upcoming exam is scheduled for next Monday.";
+  } else if (userInput.includes("faculty")) {
+    response = "Prof. Manpreet Kaur can be contacted at manpreet.kaur@lpu.in";
+  } else if (userInput.includes("assignment")) {
+    response = "You have 2 assignments due this week.";
   } else {
-    botReply = "I'm still learning! Please ask academic-related queries like notes, faculty, or exams.";
+    response = "I'm sorry, I didn't understand that.";
   }
 
-  // Show bot reply
-  chatBox.innerHTML += <div><strong>CoPilot:</strong> ${botReply}</div>;
-  chatBox.scrollTop = chatBox.scrollHeight;
-  input.value = "";
+  chatBox.innerHTML += <div class='user-msg'>You: ${userInput}</div>;
+  chatBox.innerHTML += <div class='bot-msg'>Bot: ${response}</div>;
+  document.getElementById("user-input").value = "";
 }
